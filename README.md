@@ -13,7 +13,7 @@ https://discuss.newrelic.com/t/periodically-share-a-new-relic-dashboard-using-th
 Clone the [Github repository](https://github.com/AnthonyBloomer/dashboard-email-scheduler/) and set up a virtual environment.
 
 ```
-git clone https://github.com/AnthonyBloomer/dashboard-email-scheduler.git
+git clone https://github.com/ahealy-newr/dashboard-email-scheduler.git
 cd dashboard-email-scheduler
 virtualenv env
 source env/bin/activate
