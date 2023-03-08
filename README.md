@@ -8,7 +8,7 @@ This project provides the ability to periodically share a New Relic Dashboard us
 
 https://discuss.newrelic.com/t/periodically-share-a-new-relic-dashboard-using-the-gmail-api/108919
 
-## Setup 
+## Environment Setup 
 
 Clone the [Github repository](https://github.com/AnthonyBloomer/dashboard-email-scheduler/) and set up a virtual environment.
 
@@ -25,16 +25,16 @@ Install the project requirements.
 pip install -r requirements.txt
 ```
 
-Export your [Personal API Key](https://docs.newrelic.com/docs/apis/get-started/intro-apis/types-new-relic-api-keys#personal-api-key) as an environment variable.
+Export your [USER API Key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#user-key) as an environment variable.
 
 ``` shell
-export NEW_RELIC_PERSONAL_API_KEY = "YOUR_API_KEY"
+export NEW_RELIC_PERSONAL_API_KEY="YOUR_API_KEY"
 ```
 
 If you have an EU based account, you will also need to export the `NEW_RELIC_REGION` environment variable:
 
 ``` shell
-export NEW_RELIC_REGION = "EU"
+export NEW_RELIC_REGION="EU"
 ```
 
 Edit `config.py` with the New Relic Dashboard and Email settings.
@@ -56,7 +56,16 @@ config = {
 }
 ```
 
-Go to the [Google Developer Console](https://console.developers.google.com/?pli=1) and create a new project. Enable the GMail API and create OAuth credentials. Download the `credentials.json` file to the root directory of this project.
+## GMAIL API Setup
 
+1. Go to the [Google Developer Console](https://console.developers.google.com/?pli=1) and create a new project. 
+2. Select Enable APIS and Services and then select GMail API option and press ENABLE
+3. Select Credentials on the left panel
+4. Select Create Credentials and OAuth Client ID option
+5. Application type -> Dekstop App
+6. Name for device you will run the scheduler from
+7. Select Create
+8. Download JSON secret and dump to root directory of this project and rename to credentials.json
 
+## Usage
 Run `python scheduler.py`. This will run an initial job so you can authenticate the application. By default the job will run ever Friday. Refer to the [Schedule](https://pypi.org/project/schedule/) project documentation to configure the scheduler to your liking. 

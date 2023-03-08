@@ -1,4 +1,5 @@
 import time
+import os
 
 import schedule
 from dashboard_exporter import exporter
@@ -33,8 +34,21 @@ def job():
         send_email(message=message, user_id="me", session=service)
 
     print("Done!")
+    cleanup_pdf_files()
 
+def cleanup_pdf_files():
+    # Get the current directory
+    current_dir = os.getcwd()
 
+    # Loop through all files in the directory
+    for file_name in os.listdir(current_dir):
+        # Check if the file is a PDF file
+        if file_name.endswith('.pdf'):
+            # Delete the PDF file
+            os.remove(os.path.join(current_dir, file_name))
+
+    print("PDF files deleted successfully.")
+    
 if __name__ == "__main__":
     # Run the initial job to authenticate with Google.
     job()
